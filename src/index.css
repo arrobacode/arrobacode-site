@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ArrobaCode — Machined Precision design system. All colors HSL. */
+
+@layer base {
+  :root {
+    --background: 0 0% 2%;
+    --foreground: 0 0% 100%;
+
+    --card: 0 0% 4%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 0 0% 4%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 0 0% 100%;
+    --primary-foreground: 0 0% 2%;
+
+    --secondary: 0 0% 8%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 8%;
+    --muted-foreground: 0 0% 55%;
+
+    --accent: 217 98% 65%;
+    --accent-foreground: 0 0% 2%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 12%;
+    --input: 0 0% 12%;
+    --ring: 0 0% 100%;
+
+    --radius: 0;
+
+    --grid-line: 0 0% 100%;
+    --grid-opacity: 0.08;
+
+    --sidebar-background: 0 0% 4%;
+    --sidebar-foreground: 0 0% 90%;
+    --sidebar-primary: 0 0% 100%;
+    --sidebar-primary-foreground: 0 0% 2%;
+    --sidebar-accent: 0 0% 8%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 0 0% 12%;
+    --sidebar-ring: 217 98% 65%;
+    --logo-gradient-start: 76 140 253;
+    --logo-gradient-end: 14 181 239;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "ss01", "cv11";
+  }
+
+  .brand-logo svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+
+  .brand-logo #simbolo stop,
+  .brand-logo #dev stop,
+  .brand-logo defs stop {
+    transition: stop-color 900ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .brand-logo defs stop {
+      transition: none;
+    }
+  }
+}
+
+@layer utilities {
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .grid-bg {
+    background-image:
+      linear-gradient(to right, hsl(var(--grid-line) / var(--grid-opacity)) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--grid-line) / var(--grid-opacity)) 1px, transparent 1px);
+    background-position: top left;
+    background-size: 48px 48px;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .corner-mark::before,
+  .corner-mark::after {
+    content: '';
+    position: absolute;
+    width: 0.75rem;
+    height: 0.75rem;
+    border-color: hsl(var(--foreground) / 0.4);
+  }
+  .corner-mark::before { top: 0; left: 0; border-top: 1px solid; border-left: 1px solid; }
+  .corner-mark::after { bottom: 0; right: 0; border-bottom: 1px solid; border-right: 1px solid; }
+
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .animate-ticker {
+    animation: ticker 40s linear infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; box-shadow: 0 0 8px hsl(var(--accent)); }
+    50% { opacity: 0.5; box-shadow: 0 0 4px hsl(var(--accent)); }
+  }
+  .animate-pulse-dot {
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  @keyframes thread-pulse {
+    0%, 100% {
+      background-color: hsl(var(--foreground) / 0.8);
+      box-shadow: 0 0 0 hsl(var(--accent) / 0);
+    }
+    50% {
+      background-color: hsl(var(--accent));
+      box-shadow: 0 0 10px hsl(var(--accent) / 0.8);
+    }
+  }
+  .animate-thread {
+    animation: thread-pulse 1.8s ease-in-out infinite;
+  }
+
+  @keyframes thread-dim {
+    0%, 100% {
+      background-color: hsl(var(--foreground) / 0.15);
+    }
+    50% {
+      background-color: hsl(var(--accent) / 0.4);
+    }
+  }
+  .animate-thread-dim {
+    animation: thread-dim 2.4s ease-in-out infinite;
+  }
+}
